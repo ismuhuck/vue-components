@@ -3,17 +3,16 @@
     <!-- <SwitchCase leftText="年" rightText="月"></SwitchCase> -->
     <!-- <Collapse :collapseData="itemList"></Collapse>
     {{dateFormat("YYYY-mm-dd-HH-MM-SS",new Date()) }} -->
-    <ul>
-      <li></li>
-    </ul>
+    <TemStore />
   </div>
 </template>
 
 <script>
-import dateFormat from '../../public/util/util'
+// import dateFormat from '../../public/util/util'
+import TemStore from './StoreTest'
 export default {
   methods:{
-    dateFormat:dateFormat,
+    // dateFormat:dateFormat,
     intervalFun(){
       const timer = setInterval(() => {
         console.log("这是一个定时器，每一秒执行一次")
@@ -62,11 +61,12 @@ export default {
   },
   name: "Home",
   components: {
+    TemStore
     // SwitchCase: () => import("../components/SwitchCase.vue"),
     // Collapse: () => import("../components/collapse.vue")
   },
   mounted(){
-    this.intervalFun()
+    // this.intervalFun()
   }
 };
 </script>
