@@ -9,19 +9,21 @@
 
 <script>
 // import dateFormat from '../../public/util/util'
-import TemStore from './StoreTest'
+import TemStore from "./StoreTest";
 export default {
-  methods:{
+  methods: {
     // dateFormat:dateFormat,
-    intervalFun(){
+    intervalFun() {
       const timer = setInterval(() => {
-        console.log("这是一个定时器，每一秒执行一次")
-      }, 1000)
+        console.log("这是一个定时器，每一秒执行一次");
+      }, 1000);
       // 添加事件侦听器，在beforeDestory中进行销毁
-      this.$once('hook:beforeDestory',()=> {
-        clearInterval(timer)
-        timer = null
-      })
+      this.$once("hook:beforeDestory", () => {
+        clearInterval(timer);
+        // 用于eslint忽略下一行
+        // eslint-disable-next-line
+        timer = null;
+      });
     }
   },
   data() {
@@ -33,13 +35,14 @@ export default {
           show: false, // 是否展示子面板
           itemTime: "2020.6.1", // 本周或本月的对应项的时间
           itemData: [
-              {
-                  name:'默认数据',
-                  data: '2333'
-              },{
-                  name:'默认数据',
-                  data: '2333'
-              }
+            {
+              name: "默认数据",
+              data: "2333"
+            },
+            {
+              name: "默认数据",
+              data: "2333"
+            }
           ] //子面板数据
         },
         {
@@ -47,17 +50,18 @@ export default {
           show: false, // 是否展示子面板
           itemTime: "2019.02.01", // 本周或本月的对应项的时间
           itemData: [
-              {
-                  name:'默认数据',
-                  data: '2333'
-              },{
-                  name:'默认数据',
-                  data: '2333'
-              }
+            {
+              name: "默认数据",
+              data: "2333"
+            },
+            {
+              name: "默认数据",
+              data: "2333"
+            }
           ] //子面板数据
-        },
+        }
       ]
-    }
+    };
   },
   name: "Home",
   components: {
@@ -65,7 +69,7 @@ export default {
     // SwitchCase: () => import("../components/SwitchCase.vue"),
     // Collapse: () => import("../components/collapse.vue")
   },
-  mounted(){
+  mounted() {
     // this.intervalFun()
   }
 };

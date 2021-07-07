@@ -8,19 +8,22 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home
-  },{
-    path:'/renderTest',
-    name: 'renderTest',
-    component:() => import('../views/renderTest.vue')
-  },{
-    path:'/Tabs',
-    name: 'Tabs',
-    component:() => import('../views/Tabs.vue')
-  },{
-    path:'/expand',
-    name: 'expand',
-    component:() => import('../views/expand.vue')
   },
+  {
+    path: "/renderTest",
+    name: "renderTest",
+    component: () => import("../views/renderTest.vue")
+  },
+  {
+    path: "/Tabs",
+    name: "Tabs",
+    component: () => import("../views/Tabs.vue")
+  },
+  {
+    path: "/expand",
+    name: "expand",
+    component: () => import("../views/expand.vue")
+  }
 ];
 
 const router = new VueRouter({

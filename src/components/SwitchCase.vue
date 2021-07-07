@@ -2,14 +2,18 @@
   <div>
     <div
       class="box-common box-left"
-      :class="boxactive ? 'box-active' :'' "
+      :class="boxactive ? 'box-active' : ''"
       @click="monthactiveHandle"
-    >{{leftText}}</div>
+    >
+      {{ leftText }}
+    </div>
     <div
       class="box-common box-right"
-      :class="boxactive ? '' :' box-active' "
+      :class="boxactive ? '' : ' box-active'"
       @click="weekactiveHandle"
-    >{{rightText}}</div>
+    >
+      {{ rightText }}
+    </div>
   </div>
 </template>
 <script>
@@ -31,18 +35,16 @@ export default {
   },
   methods: {
     monthactiveHandle() {
-      if(!this.boxactive){
+      if (!this.boxactive) {
         this.boxactive = !this.boxactive;
-      }
-      else{
-        return; 
+      } else {
+        return;
       }
     },
     weekactiveHandle() {
-      if (this.boxactive){
+      if (this.boxactive) {
         this.boxactive = !this.boxactive;
-      }
-      else {
+      } else {
         return;
       }
     }
