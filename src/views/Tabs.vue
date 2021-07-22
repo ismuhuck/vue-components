@@ -44,34 +44,34 @@
 export default {
   data() {
     return {
-      theme2: "light",
+      theme2: 'light',
       tab0: false,
       tab1: false,
       tab2: false,
-      tabName: "shouye"
-    };
+      tabName: 'shouye'
+    }
   },
   methods: {
     handleSelect(name) {
-      console.log("name", name);
-      if (name === "举报管理") {
-        this.tab2 = true;
-        this.tabName = "tab2";
-      } else if (name === "评论管理") {
-        this.tab1 = true;
-        this.tabName = "tab1";
-      } else if (name === "文章管理") {
-        this.tab0 = true;
-        this.tabName = "tab0";
+      console.log('name', name)
+      if (name === '举报管理') {
+        this.tab2 = true
+        this.tabName = 'tab2'
+      } else if (name === '评论管理') {
+        this.tab1 = true
+        this.tabName = 'tab1'
+      } else if (name === '文章管理') {
+        this.tab0 = true
+        this.tabName = 'tab0'
       }
     },
     handleAdd() {
-      this.tab0 = true;
+      this.tab0 = true
     },
     handleTabRemove(name) {
-      this["tab" + name] = false;
+      this['tab' + name] = false
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped></style>

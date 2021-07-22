@@ -45,25 +45,25 @@ export default {
   },
   watch: {
     collapseData(newVal, oldVal) {
-      console.log(newVal, oldVal);
+      console.log(newVal, oldVal)
     }
   },
   created() {
-    this.init(this.collapseData);
+    this.init(this.collapseData)
   },
   methods: {
     // 组件数据初始化
     init(collapse) {
-      this.itemList[0] = this.collapseData[0];
-      this.itemList[1] = this.collapseData[1];
+      this.itemList[0] = this.collapseData[0]
+      this.itemList[1] = this.collapseData[1]
     },
     // 通过点击事件 来控制子面板的显示与隐藏 当该项数据为0时不可点击
     collapseClick(i, num) {
       for (let a = 0; a < this.itemList.length; a++) {
         if (a == i) {
-          this.itemList[i].show = !this.itemList[i].show;
+          this.itemList[i].show = !this.itemList[i].show
         } else {
-          this.itemList[a].show = false;
+          this.itemList[a].show = false
         }
       }
     }
@@ -71,43 +71,43 @@ export default {
   data() {
     return {
       datacollapse: {},
-      itemTime: "item-time",
+      itemTime: 'item-time',
       itemList: [
         // 需要展示的列表数据
         {
-          itemName: "222", // 折叠面板标题
+          itemName: '222', // 折叠面板标题
           show: false, // 是否展示子面板
-          itemTime: "222", // 本周或本月的对应项的时间
+          itemTime: '222', // 本周或本月的对应项的时间
           itemData: [
             {
-              name: "默认数据",
-              data: "2333"
+              name: '默认数据',
+              data: '2333'
             },
             {
-              name: "默认数据",
-              data: "2333"
+              name: '默认数据',
+              data: '2333'
             }
           ] //子面板数据
         },
         {
-          itemName: "222", // 折叠面板标题
+          itemName: '222', // 折叠面板标题
           show: false, // 是否展示子面板
-          itemTime: "222", // 本周或本月的对应项的时间
+          itemTime: '222', // 本周或本月的对应项的时间
           itemData: [
             {
-              name: "默认数据",
-              data: "2333"
+              name: '默认数据',
+              data: '2333'
             },
             {
-              name: "默认数据",
-              data: "2333"
+              name: '默认数据',
+              data: '2333'
             }
           ] //子面板数据
         }
       ]
-    };
+    }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .container {

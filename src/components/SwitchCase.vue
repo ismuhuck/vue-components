@@ -21,35 +21,35 @@ export default {
   props: {
     leftText: {
       type: String,
-      default: "月"
+      default: '月'
     },
     rightText: {
       type: String,
-      default: "周"
+      default: '周'
     }
   },
   data() {
     return {
       boxactive: true
-    };
+    }
   },
   methods: {
     monthactiveHandle() {
       if (!this.boxactive) {
-        this.boxactive = !this.boxactive;
+        this.boxactive = !this.boxactive
       } else {
-        return;
+        return
       }
     },
     weekactiveHandle() {
       if (this.boxactive) {
-        this.boxactive = !this.boxactive;
+        this.boxactive = !this.boxactive
       } else {
-        return;
+        return
       }
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 .box-common {

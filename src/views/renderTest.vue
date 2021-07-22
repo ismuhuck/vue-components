@@ -6,12 +6,12 @@
 <script>
 export default {
   data() {
-    return {};
+    return {}
   },
   methods: {},
   components: {
-    anchored: () => import("../components/anchored.vue")
+    anchored: () => import('../components/anchored.vue')
   }
-};
+}
 </script>
 <style lang="scss" scoped></style>
