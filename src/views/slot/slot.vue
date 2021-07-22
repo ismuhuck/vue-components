@@ -5,7 +5,6 @@
         这是头部插槽
       </template>
       <template v-slot:default="slotProps">
-        <div></div>
         {{ slotProps.user.lastName }}
       </template>
       <template v-slot:footer>
@@ -20,6 +19,11 @@ import SoltChild from './slotChild.vue'
 export default {
   components: {
     SoltChild
+  },
+  data() {
+    return {
+      a: ''
+    }
   }
 }
 </script>
