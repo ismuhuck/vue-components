@@ -11,6 +11,13 @@
       <i class="iconfont zwpt_infor"></i>
     </div>
     <div>token: {{ token }}</div>
+    <router-link
+      :to="{
+        name: 'renderTest',
+        params: { name: 'muhuck', age: 24, info: { num: 10010, sex: '男' } }
+      }"
+      >渲染函数</router-link
+    >
   </div>
 </template>
 <script>
