@@ -12,9 +12,7 @@ const routes = [
   {
     path: '/renderTest',
     name: 'renderTest',
-    component: () => import('../views/renderTest.vue'),
-    // 将路由参数使用prop传递
-    props: true
+    component: () => import('../views/renderTest.vue')
   },
   {
     path: '/Tabs',
