@@ -23,10 +23,16 @@
 <script>
 // import { createNamespacedHelpers } from 'vuex'
 // const { mapState, mapMutations, mapGetters, mapActions } = createNamespacedHelpers('')
+import { loginAPI } from '@/api/commonApi'
 import { mapState, mapMutations } from 'vuex'
 export default {
   data() {
-    return {}
+    return {
+      msg: '消息内容'
+    }
+  },
+  created() {
+    this.getList()
   },
   computed: {
     ...mapState({
@@ -44,6 +50,17 @@ export default {
     handleMutations() {
       this.SET_NAME('muhuck')
       // this.$store.commit("SET_TOKEN","tokenkkkkkkk")
+    },
+    getList() {
+      loginAPI.dir({ a: 'a1', b: 'b1' }).then(result => {
+        console.log('resultdir', result)
+      })
+      loginAPI.login({ a: 'alogin1', b: 'blogin1' }).then(result => {
+        console.log('resultlogin', result)
+      })
+      loginAPI.test({ a: 'atest1', b: 'btest1' }).then(result => {
+        console.log('resulttest', result)
+      })
     },
     handleActions() {
       this.$store.dispatch('Login')

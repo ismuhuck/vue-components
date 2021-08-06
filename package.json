@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "compression-webpack-plugin": "^5.0.2",
     "core-js": "^3.6.5",
     "view-design": "^4.4.0",
     "vue": "^2.6.11",

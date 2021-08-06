@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ViewUI from 'view-design'
-import axios from 'axios'
+// import axios from 'axios'
 Vue.config.productionTip = false
 import 'view-design/dist/styles/iview.css'
 Vue.use(ViewUI)
@@ -18,12 +18,12 @@ Vue.directive('permission', {
     }
   }
 })
-console.log('${__dirname}/static/config.js', __dirname)
-axios.get(`${__dirname}static/config.js`).then(res => {
-  console.log('res.data', res.data)
-  const config = eval(res.data)
-  console.log('config', config)
-})
+// console.log('${__dirname}/static/config.js', __dirname)
+// axios.get(`${__dirname}static/config.js`).then(res => {
+//   console.log('res.data', res.data)
+//   const config = eval(res.data)
+//   console.log('config', config)
+// })
 new Vue({
   router,
   store,
