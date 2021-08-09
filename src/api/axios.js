@@ -35,10 +35,10 @@ function initFormRequest() {
   isDownLoad = false
 }
 
-function initDownLoad() {
-  isFormData = false
-  isDownLoad = true
-}
+// function initDownLoad() {
+//   isFormData = false
+//   isDownLoad = true
+// }
 
 // 请求拦截器
 axios.interceptors.request.use(
@@ -170,18 +170,18 @@ export function formData(url, params) {
       })
   })
 }
-export function downLoad(url, params) {
-  initDownLoad()
-  return new Promise((resolve, reject) => {
-    axiosinstance
-      .get(url, {
-        params: initParams(params)
-      })
-      .then(res => {
-        resolve(res.data)
-      })
-      .catch(err => {
-        reject(err.data)
-      })
-  })
-}
+// export function downLoad(url, params) {
+//   initDownLoad()
+//   return new Promise((resolve, reject) => {
+//     axiosinstance
+//       .get(url, {
+//         params: initParams(params)
+//       })
+//       .then(res => {
+//         resolve(res.data)
+//       })
+//       .catch(err => {
+//         reject(err.data)
+//       })
+//   })
+// }

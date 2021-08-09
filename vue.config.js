@@ -24,7 +24,7 @@ module.exports = {
   devServer: {
     host: '0.0.0.0',
     port: 7405,
-    https: false, // 是否开启https
+    https: false,
     hotOnly: true, // 是否开启热更新
     open: false, // 是否自启动浏览器
     proxy: {
@@ -36,7 +36,7 @@ module.exports = {
         target: 'http://127.0.0.1:3000',
         changeOrigin: true,
         pathRewrite: {
-          '^/test': '/rf/test'
+          '^/test': '/rf/test' // 重写请求路径 将/test 重写为 /rf/test
         }
       }
     }
