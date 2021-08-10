@@ -22,7 +22,8 @@ export default {
     return {
       mapData: null,
       mapCenter: [120.144526, 30.282869],
-      mapZoom: 8
+      mapZoom: 8,
+      clickCenter:[0, 0]
     }
   },
   mounted() {
@@ -75,6 +76,16 @@ export default {
         })
       })
       this.mapData = map
+
+      this.mapData.on('click', this.mapClick)
+    },
+    mapClick(evt){
+        // 获取点击中心点
+        this.clickCenter = evt.coordinate
+        // 移动地图
+        this.mapData.getView().animate({
+          center:evt.coordinate,
+        })
     }
   }
 }
