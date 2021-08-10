@@ -28,6 +28,11 @@ const routes = [
     path: '/slot',
     name: 'slot',
     component: () => import('../views/slot/slot.vue')
+  },
+  {
+    path: '/map',
+    name: 'Map',
+    component: () => import('../views/ol/index.vue')
   }
 ]
 
