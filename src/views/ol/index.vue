@@ -11,6 +11,13 @@
         :className="'map-popup'"
         >{{ popupText }}</MapPopup
       >
+      <Button @click="addMark" class="click-button">click Me!</Button>
+      <Button @click="addLayers" class="click-button click-button-tdt"
+        >加载底图</Button
+      >
+      <!-- <div class="logo">
+        <img src="../../assets/logo.png" alt="" />
+      </div> -->
     </div>
   </div>
 </template>
@@ -19,16 +26,17 @@
 /* eslint-disable */
 import 'ol/ol.css'
 import { Map, View } from 'ol'
-import { XYZ, Vector } from 'ol/source'
+import { XYZ } from 'ol/source'
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import GeoJSON from 'ol/format/GeoJSON' // 用于加载json数据
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
 import geojsonObject from '../../json/hz.json'
 import VectorSource from 'ol/source/Vector'
-import { Stroke, Style, Fill, Icon } from 'ol/style'
-import {fromLonLat} from 'ol/proj';
+import { Stroke, Style, Fill, Icon, Circle,Text } from 'ol/style'
+import { fromLonLat, toLonLat } from 'ol/proj';
 import MapPopup from '@/components/ol/MapPopup'
+import { getTianditu } from '@/assets/js/getTDTUrl.js'
 // import Draw from 'ol/interaction/Draw';
 // import mapconfig from '@/config/mapconfig.js'
 export default {
@@ -77,9 +85,6 @@ export default {
       const vectorSource = new VectorSource({
         features: new GeoJSON().readFeatures(geojsonObject),
       })
-      const markLayers = new VectorLayer({
-        source: new VectorSource()
-      })
       const geoLayers = new VectorLayer({
         source: vectorSource,
         style: new Style({
@@ -90,7 +95,8 @@ export default {
           fill: new Fill({
             color: 'rgba(0, 0, 255, 0.1)'
           })
-        })
+        }),
+        zIndex: 1
       })
       const maplayer = new TileLayer({
         source: new XYZ({
@@ -98,22 +104,12 @@ export default {
             'http://t4.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=17d1619c13e4508bc1945bd59de4edf8'
         })
       })
-
-      // 添加标记
-      let mark = new Feature({
-        geometry: new Point(fromLonLat([120.144526, 30.282869]))
-      })
-      mark.setStyle(new Style({
-        image: new Icon({
-          // color: '#BADA55',
-          // crossOrigin: 'anonymous',
-          // imgSize: [100, 100],
-          src: '../../assets/llj.png'
-        })
-      }))
-      markLayers.getSource().addFeature(mark)
+      // fromLonLat 坐标转换 将EPSG:4326 转换为 EPSG: 3857
+      // toLonLat 将EPSG: 3857 转化为 EPSG:4326
+      // transform transform([坐标], 'EPSG: 3857', 'EPSG: 4326') 或 transform([坐标], 'EPSG: 4326', 'EPSG: 3857')
+      // 添加标记 maplayer, tian_di_tu_annotation,
       const map = new Map({
-        layers: [maplayer, tian_di_tu_annotation, geoLayers, markLayers], // 添加地图图层  Object | Array
+        layers: [geoLayers], // 添加地图图层  Object | Array
         target: mapContainer, // 地图容器 id | element
         logo: true,
         view: new View({
@@ -123,11 +119,45 @@ export default {
           center: this.mapCenter,
           zoom: this.mapZoom,
           minZoom: 1,
-          maxZoom: 10
+          maxZoom: 13
         })
       })
       this.mapData = map
       this.mapData.on('singleclick', this.mapClick)
+    },
+    addLayers(){
+      var tdt = getTianditu({
+        type: '影像底图',
+        proj: '经纬度投影',
+        key: '17d1619c13e4508bc1945bd59de4edf8'
+      });
+      this.mapData.addLayer(tdt)
+    },
+    addMark(){
+      const markLayers = new VectorLayer({
+        source: new VectorSource(),
+        zIndex:1000
+      })
+      const markIcon = new Feature({
+        geometry: new Point([120.144526, 30.282869])
+      })
+      markIcon.setStyle(
+        new Style({
+          // text:new Text({
+          //   text:'123123'
+          // }),
+          image: new Icon({
+            // src: '../../assets/logo.png'
+            src: require('@assets/logo.png'),
+            size: [40, 40]
+          })
+        })
+      )
+      // debugger
+      markLayers.getSource().addFeature(markIcon)
+      this.mapData.addLayer(markLayers)
+      this.mapData.getView().setCenter([120.144526, 30.282869])
+      this.mapData.getView().setZoom(18)
     },
     mapClick(evt){
         // 获取点击中心点
@@ -153,6 +183,18 @@ export default {
 .openlayer {
   height: 100vh;
   width: 100vw;
+}
+.click-button, .logo{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  z-index: 2;
+}
+.click-button-tdt{
+  top: 60px;
+}
+.logo{
+  top: 60px;
 }
 #map {
   height: 100%;

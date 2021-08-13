@@ -1,5 +1,9 @@
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i
+
+const path = require('path')
+const resolve = dir => path.join(__dirname, dir)
+
 module.exports = {
   configureWebpack: config => {
     const plugins = []
@@ -18,7 +22,15 @@ module.exports = {
     config.plugins = [...config.plugins, ...plugins]
     config.devtool = 'source-map'
   },
+  chainWebpack: config => {
+    // 配置路径别名
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('@assets', resolve('src/assets'))
+  },
   publicPath: './',
+  assetsDir: 'static',
+  runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   productionSourceMap: false, // false 打包时不生成.map 文件
   lintOnSave: false, // 是否开启esLint
   devServer: {
@@ -30,11 +42,11 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:3000',
-        changeOrigin: true
+        changeOrigin: false //是否开启代理， 在本地创建一个虚拟服务端
       },
       '/test': {
         target: 'http://127.0.0.1:3000',
-        changeOrigin: true,
+        changeOrigin: false,
         pathRewrite: {
           '^/test': '/rf/test' // 重写请求路径 将/test 重写为 /rf/test
         }
