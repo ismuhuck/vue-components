@@ -143,14 +143,22 @@ export default {
       })
       markIcon.setStyle(
         new Style({
-          // text:new Text({
-          //   text:'123123'
+          text:new Text({
+            text:'文本内容',
+            stroke: new Stroke({ // 矢量要素边界样式
+              color: '#fff',
+              width: 3
+            })
+          }),
+          // stroke: new Stroke({ // 要素边界样式
+          //   color: 'black',
+          //   width: 3
           // }),
-          image: new Icon({
-            // src: '../../assets/logo.png'
-            src: require('@assets/logo.png'),
-            size: [40, 40]
-          })
+          // image: new Icon({
+          //   // src: '../../assets/logo.png'
+          //   src: require('@assets/llj.png'),
+          //   size: [40, 40]
+          // })
         })
       )
       // debugger
@@ -191,7 +199,7 @@ export default {
   z-index: 2;
 }
 .click-button-tdt{
-  top: 60px;
+  top: 72px;
 }
 .logo{
   top: 60px;
