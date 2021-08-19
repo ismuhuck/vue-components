@@ -29,4 +29,39 @@ function isType(data, type) {
   return type ? typeName === type : typeName
 }
 
-export { isType }
+/**
+ *  日期格式化时间
+ * @param {String} fmt 想要的日期格式
+ * @param {Date} date 需要格式化的Date类型的日期
+ * @returns 格式化完成的数据
+ */
+function dateFormat(fmt, date) {
+  let ret
+  const opt = {
+    'Y+': date.getFullYear().toString(), // 年
+    'm+': (date.getMonth() + 1).toString(), // 月
+    'd+': date.getDate().toString(), // 日
+    'H+': date.getHours().toString(), // 时
+    'M+': date.getMinutes().toString(), // 分
+    'S+': date.getSeconds().toString() // 秒
+  }
+  for (let k in opt) {
+    ret = new RegExp('(' + k + ')').exec(fmt)
+    if (ret) {
+      /**
+       * padStart 根据给定的长度在字符串前面补充想要补充的字符串 padStart(len,str)
+       *  len: 转换后的长度
+       *  str: 想要补充的字符串
+       * padEnd(len,str) 在字符串的后面补充字符串
+       * (opt[k].padStart(ret[1].length, "0"))
+       */
+      fmt = fmt.replace(
+        ret[1],
+        ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, '0')
+      )
+    }
+  }
+  return fmt
+}
+
+export { isType, dateFormat }
