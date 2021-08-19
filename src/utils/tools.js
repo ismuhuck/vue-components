@@ -1,6 +1,6 @@
 /**
  * 判断数据类型
- * @param {any} data 要判断数据类型的数据
+ * @param {any} data 要判断数据类型的数据, 注意返回的类型为小写字母开头
  * @param {string} type 目标类型
  * @returns 是否是目标类型，当不传入指定type时返回相应的类型
  */
