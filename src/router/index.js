@@ -33,6 +33,19 @@ const routes = [
     path: '/map',
     name: 'Map',
     component: () => import('../views/ol/index.vue')
+  },
+  {
+    path: '/css',
+    name: 'Css',
+    component: () => import('../views/css/css.vue'),
+    redirect: '/css/radius',
+    children: [
+      {
+        path: 'radius',
+        name: '波浪绘制',
+        component: () => import('../views/css/radius.vue')
+      }
+    ]
   }
 ]
 

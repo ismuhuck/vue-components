@@ -1,10 +1,10 @@
 /**
  * 判断数据类型
- * @param {any} data 要判断数据类型的数据, 注意返回的类型为小写字母开头
+ * @param {any} data 要判断数据类型的数据
  * @param {string} type 目标类型
- * @returns 是否是目标类型，当不传入指定type时返回相应的类型
+ * @returns 是否是目标类型(true | false)，当不传入指定type时返回相应的类型(注意返回的类型为小写字母开头)
  */
-function isType(data, type) {
+function checkType(data, type) {
   const typeObj = {
     '[object String]': 'string',
     '[object Number]': 'number',
@@ -64,4 +64,4 @@ function dateFormat(fmt, date) {
   return fmt
 }
 
-export { isType, dateFormat }
+export { checkType, dateFormat }

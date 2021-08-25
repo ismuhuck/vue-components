@@ -82,9 +82,9 @@ function isArrayLike(o) {
     o.length >= 0 && // o.length为非负值
     o.length === Math.floor(o.length) && // o.length是整数
     o.length < 4294967296
-  )
-    // o.length < 2^32
+  ){
     return true
+  }
   else return false
 }
 
