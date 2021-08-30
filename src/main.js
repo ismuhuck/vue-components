@@ -6,6 +6,7 @@ import ViewUI from 'view-design'
 // import axios from 'axios'
 Vue.config.productionTip = false
 import 'view-design/dist/styles/iview.css'
+import './assets/css/reset.css'
 Vue.use(ViewUI)
 
 Vue.directive('permission', {
