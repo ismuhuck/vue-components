@@ -44,6 +44,11 @@ const routes = [
         path: 'radius',
         name: '波浪绘制',
         component: () => import('../views/css/radius.vue')
+      },
+      {
+        path: 'dowmload',
+        name: '下载图片',
+        component: () => import('../views/css/downloadImg.vue')
       }
     ]
   }

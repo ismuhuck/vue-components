@@ -51,5 +51,92 @@ function dateFormat(fmt, date) {
   }
   return fmt
 }
+/**
+ * 判断数据类型
+ * @param {any} data 要判断数据类型的数据
+ * @param {string} type 目标类型
+ * @returns 是否是目标类型，当不传入指定type时返回相应的类型
+ */
+export function isType(data, type) {
+  const typeObj = {
+    '[object String]': 'string',
+    '[object Number]': 'number',
+    '[object Boolean]': 'boolean',
+    '[object Null]': 'null',
+    '[object Undefined]': 'undefined',
+    '[object Object]': 'object',
+    '[object Array]': 'array',
+    '[object Function]': 'function',
+    '[object Date]': 'date', // Object.prototype.toString.call(new Date())
+    '[object RegExp]': 'regExp',
+    '[object Map]': 'map',
+    '[object Set]': 'set',
+    '[object HTMLDivElement]': 'dom', // document.querySelector('#app')
+    '[object WeakMap]': 'weakMap',
+    '[object Window]': 'window', // Object.prototype.toString.call(window)
+    '[object Error]': 'error', // new Error('1')
+    '[object Arguments]': 'arguments'
+  }
+  let name = Object.prototype.toString.call(data) // 借用Object.prototype.toString()获取数据类型
+  let typeName = typeObj[name] || '未知类型' // 匹配数据类型
+  return type ? typeName === type : typeName
+}
+
+/**
+ *
+ * @returns 获取当前日期
+ */
+export function getCurrentTime() {
+  return dateFormat('YYYY-mm-dd', new Date())
+}
+
+/**
+ *获取查询参数
+ * @param {string} url
+ * @returns {Object}
+ */
+export function getQueryObject(url) {
+  url = url == null ? window.location.href : url
+  const search = url.substring(url.lastIndexOf('?') + 1)
+  const obj = {}
+  const reg = /([^?&=]+)=([^?&=]*)/g
+  search.replace(reg, (rs, $1, $2) => {
+    const name = decodeURIComponent($1)
+    let val = decodeURIComponent($2)
+    val = String(val)
+    obj[name] = val
+    return rs
+  })
+  return obj
+}
+
+/**
+ * @param {Array} actual
+ * @returns {Array}
+ */
+export function cleanArray(actual) {
+  const newArray = []
+  for (let i = 0; i < actual.length; i++) {
+    if (actual[i]) {
+      newArray.push(actual[i])
+    }
+  }
+  return newArray
+}
+
+/**
+ * 将对象编码为查询参数
+ * @param {Object} json
+ * @returns {Array}
+ */
+export function param(json) {
+  if (!json) return ''
+  return cleanArray(
+    Object.keys(json).map(key => {
+      if (json[key] === undefined) return ''
+      return encodeURIComponent(key) + '=' + encodeURIComponent(json[key])
+    })
+  ).join('&')
+}
 
 export { backTop, dateFormat }

@@ -42,14 +42,18 @@ module.exports = {
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:3000',
-        changeOrigin: false //是否开启代理， 在本地创建一个虚拟服务端
+        changeOrigin: true //是否开启代理， 在本地创建一个虚拟服务端
       },
       '/test': {
         target: 'http://127.0.0.1:3000',
-        changeOrigin: false,
+        changeOrigin: true,
         pathRewrite: {
           '^/test': '/rf/test' // 重写请求路径 将/test 重写为 /rf/test
         }
+      },
+      '/getFileStream': {
+        target: 'http://127.0.0.1:3000',
+        changeOrigin: true
       }
     }
   }

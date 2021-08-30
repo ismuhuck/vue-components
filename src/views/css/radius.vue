@@ -5,7 +5,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+    setInterval(() => {
+      debugger
+    }, 100)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
