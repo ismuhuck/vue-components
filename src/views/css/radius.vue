@@ -7,9 +7,9 @@
 <script>
 export default {
   mounted() {
-    setInterval(() => {
-      debugger
-    }, 100)
+    // setInterval(() => {
+    //   debugger
+    // }, 100)
   }
 }
 </script>
@@ -20,7 +20,7 @@ export default {
 //   height: 100vh;
 // }
 // 设置水平垂直居中的最简洁方法，原理：
-// 在flex格式化上下文中，设置了margin: auto的元素，在通过justify-content和align-self进行对其之前，任何正处于空闲的空间都会分配到该方向的自动margin中去
+// 在flex格式化上下文中，设置了margin: auto的元素，在通过justify-content和align-self进行对齐之前，任何正处于空闲的空间都会分配到该方向的自动margin中去
 // .container {
 //   width: 500px;
 //   height: 500px;

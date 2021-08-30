@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <!-- 加载loading组件 -->
+  <div class="container" v-show="loadingFlag">
     <div class="loading-container">
       <span></span>
       <span></span>
@@ -9,14 +10,27 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    loadingFlag: {
+      type: Boolean,
+      default: true
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 .container {
   height: 100vh;
+  width: 100vw;
   display: flex;
   background-color: #fff;
+  // opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
 }
 .loading-container {
   position: relative;
